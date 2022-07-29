@@ -1,0 +1,6 @@
+Master: Mostra que estamos na linha do tempo principal do projeto
+Head: Aponta o commit que nos estamos dentro da linha do tempo, 
+é um ponteiro e ele pode se mexer e apontar para outro commit dependendo
+do ponto da historia
+
+
