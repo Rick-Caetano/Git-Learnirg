@@ -1,8 +1,20 @@
 
 function textWrite(){
     text=$1
-    echo " $text "
-    #sleep
+    textRead=$2
+    colorMode=$3
+    
+    if [ colorMode == true ]
+    then
+       
+       Color=$4
+       Estile=$5
+       Background=$6
+
+       $text=`coloredWords $text $Color $Estile $Background`
+fi
+
+echo " $text "
 }
 
 createContentFile() {
