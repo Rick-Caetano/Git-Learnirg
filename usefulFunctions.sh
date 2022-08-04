@@ -1,20 +1,15 @@
 
 function textWrite(){
     text=$1
-    textRead=$2
-    colorMode=$3
-    
-    if [ colorMode == true ]
+    timeRead=$2
+
+    echo " $text "
+    #sleep
+    if [ $timeRead == true ]
     then
-       
-       Color=$4
-       Estile=$5
-       Background=$6
-
-       $text=`coloredWords $text $Color $Estile $Background`
-fi
-
-echo " $text "
+        sleep 4
+        return 
+    fi
 }
 
 createContentFile() {
@@ -51,6 +46,6 @@ function readInfo() {
     touch $INFOFILE
     echo $CONTENT
     cat $INFOFILE
-    textWrite "Type any enter to continue..."
+    textWrite "Type any enter to continue..." false
     read 
 }

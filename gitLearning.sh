@@ -7,14 +7,14 @@ source usefulFunctions.sh
 
 function gitBasiComands(){
     firstCommit
-    textWrite "Now, let's change name of 'rename.me' file. type new name: "
+    textWrite "Now, let's change name of 'rename.me' file. type new name: " true
     read newname
     renameFile "rename.me" $newname
-    textWrite "Agora que alteramos o arquivo, precisamos fazer um novo commit"
+    textWrite "Now that we've changed name of file, we need a new commit" true
     createNewCommit
     createContentFile rename.me "Estão me rastreando?! tenho que me esconder... Não posso ficar parado aqui."
-    echo "rename.me say" && cat rename.me
-    removeUntrackedFiles
+    echo "rename.me say: " && cat rename.me
+    #removeUntrackedFiles
 }
 
 function gitLogComands(){
@@ -108,9 +108,11 @@ function run(){
     echo "hello $USER"
     readInfo "This code is based on choices. The environment created here is just for testing and is for you to see the basic actions of git for the day to day of the programmer. *The purpose of using the shell script is just to make it more dynamic, since git runs on the command line*. Well, let's get started..."
     clear
-    gitLogComands
+    gitBasiComands
 }
 
 #saida=`coloredWords "amor" "32m" 01 "37m"` #salva o retorno da função
 #echo "sla $saida" #mostra o retorno
+
+run
 

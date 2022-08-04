@@ -3,22 +3,27 @@
 source usefulFunctions.sh
 
 function createNewCommit(){
-    #sintax here
+    COMMANDSINTAX1=`coloredWords "git add ." "31m" 0 "37m"`
+    COMMANDSINTAX2=`coloredWords "git commit -m 'MESSAGEHERE'" "31m" 0 "37m"`
+
+    #Explication
+    textWrite "This Command $COMMANDSINTAX2 create a nem point in history of your project, that is what we call a commit." true
+    textWrite "before then we use the $COMMANDSINTAX1 to send all files for Stage Area. You can send individual files too, but you need replace '.' by name of file"
+
     git status
     echo "type a message of commit: "
     read commitMessage
-    git add . #adicionamos mudanças. O "." adiciona todos os arquivos para stage Area, para adicionarmos apenas alguns devemos passar os nomes dos arquivos
-    #git rm --cached NomedoArquivo -> remove da stage area os arquivos passados errados com o add. Podemos também usa-lo para remover arquivos do projeto
-    git commit -m $commitMessage #marcamos um ponto na historia do projeto
+    git add . 
+    git commit -m $commitMessage 
 }
 
 function firstCommit(){
     COMMANDSINTAX=`coloredWords "'git init'" "31m" 0 "37m"`
-    textWrite "First, you need use $COMMANDSINTAX command to inicialize the git in your directory."
+    textWrite "First, you need use $COMMANDSINTAX command to inicialize the git in your directory." true
     #rm -rf .git
     git init
+    textWrite "type for message 'first commit' or something like that..." false
     createNewCommit
-    textWrite "type for message 'first commit' or something like that..."
 }
 
 function renameFile(){
@@ -33,6 +38,7 @@ function renameFile(){
 function removeFile() {
     FILETOREMOVE=$1
 
+    #git rm --cached NomedoArquivo -> remove da stage area os arquivos passados errados com o add. Podemos também usa-lo para remover arquivos do projeto
     createContentFile "remove.me" "Estou tão solitario, sempre sozinho... tão sozinho! Deus, alguem me liberte dessa solidão"
     ls -lhr
     git rm $FILETOREMOVE
