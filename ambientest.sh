@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "preparing ambient..."
 cd .. 
 ls -lhra

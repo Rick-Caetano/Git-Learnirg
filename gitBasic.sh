@@ -7,22 +7,24 @@ function createNewCommit(){
     COMMANDSINTAX2=`coloredWords "git commit -m 'MESSAGEHERE'" "31m" 0 "37m"`
 
     #Explication
-    textWrite "This Command $COMMANDSINTAX2 create a nem point in history of your project, that is what we call a commit." true
-    textWrite "before then we use the $COMMANDSINTAX1 to send all files for Stage Area. You can send individual files too, but you need replace '.' by name of file"
+    textWrite "This Command $COMMANDSINTAX2 create a nem point in history of your project, that is what we call a commit. \n" true 
+    textWrite "Before then we use the $COMMANDSINTAX1 to send all files for Stage Area. You can send individual files too, but you need replace '.' by name of file \n" true 
+    pressEnter
 
     git status
-    echo "type a message of commit: "
+    coloredWords "type a message of commit: " "32m" 0 "37m"
     read commitMessage
     git add . 
-    git commit -m $commitMessage 
+    git commit -m "$commitMessage"
 }
 
 function firstCommit(){
     COMMANDSINTAX=`coloredWords "'git init'" "31m" 0 "37m"`
     textWrite "First, you need use $COMMANDSINTAX command to inicialize the git in your directory." true
-    #rm -rf .git
+    rm -rf .git
     git init
-    textWrite "type for message 'first commit' or something like that..." false
+    textWrite "\n *In the first commit, type for message 'first commit' or something like that...*\n" false
+    pressEnter
     createNewCommit
 }
 

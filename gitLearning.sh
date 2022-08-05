@@ -10,7 +10,7 @@ function gitBasiComands(){
     textWrite "Now, let's change name of 'rename.me' file. type new name: " true
     read newname
     renameFile "rename.me" $newname
-    textWrite "Now that we've changed name of file, we need a new commit" true
+    textWrite "Now that we've changed name of file, we need a new commit \n" true 
     createNewCommit
     createContentFile rename.me "Estão me rastreando?! tenho que me esconder... Não posso ficar parado aqui."
     echo "rename.me say: " && cat rename.me

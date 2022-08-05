@@ -1,0 +1,1 @@
+gnome-terminal --geometry=90x30 --title="git-Learning" --working-directry=$PWD -- ./gitLearning.sh

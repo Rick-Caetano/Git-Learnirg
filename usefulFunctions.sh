@@ -1,15 +1,19 @@
+#!/bin/bash
 
-function textWrite(){
+function textWrite() {
+
     text=$1
     timeRead=$2
+    space=$3
 
-    echo " $text "
-    #sleep
+    echo -e " $text "
+    
     if [ $timeRead == true ]
     then
         sleep 4
         return 
     fi
+    
 }
 
 createContentFile() {
@@ -46,6 +50,10 @@ function readInfo() {
     touch $INFOFILE
     echo $CONTENT
     cat $INFOFILE
-    textWrite "Type any enter to continue..." false
-    read 
+    pressEnter
+}
+
+function pressEnter() {
+    coloredWords "Type any enter to continue..." "36m" 0 "37m"
+    read
 }
