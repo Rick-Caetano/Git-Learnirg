@@ -4,10 +4,11 @@ function textWrite() {
 
     text=$1
     timeRead=$2
-    space=$3
 
-    echo -e " $text "
     
+    echo -e " $text "
+    echo -e "$text" >> record.txt
+
     if [ $timeRead == true ]
     then
         sleep 4
@@ -22,7 +23,10 @@ createContentFile() {
     if [ ! -e $ARCHIVE ]
     then
         touch $ARCHIVE
+    else 
+        rm $ARCHIVE
     fi
+
 
     echo $FILECONTENT >> $ARCHIVE
 }
@@ -56,4 +60,5 @@ function readInfo() {
 function pressEnter() {
     coloredWords "Type any enter to continue..." "36m" 0 "37m"
     read
+    clear
 }

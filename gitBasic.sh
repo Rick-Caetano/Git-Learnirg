@@ -2,30 +2,40 @@
 
 source usefulFunctions.sh
 
-function createNewCommit(){
-    COMMANDSINTAX1=`coloredWords "git add ." "31m" 0 "37m"`
-    COMMANDSINTAX2=`coloredWords "git commit -m 'MESSAGEHERE'" "31m" 0 "37m"`
-
-    #Explication
-    textWrite "This Command $COMMANDSINTAX2 create a nem point in history of your project, that is what we call a commit. \n" true 
-    textWrite "Before then we use the $COMMANDSINTAX1 to send all files for Stage Area. You can send individual files too, but you need replace '.' by name of file \n" true 
-    pressEnter
-
-    git status
-    coloredWords "type a message of commit: " "32m" 0 "37m"
-    read commitMessage
-    git add . 
-    git commit -m "$commitMessage"
-}
-
 function firstCommit(){
-    COMMANDSINTAX=`coloredWords "'git init'" "31m" 0 "37m"`
-    textWrite "First, you need use $COMMANDSINTAX command to inicialize the git in your directory." true
+    COMMANDSINTAX1=`coloredWords "'git init'" "31m" 0 "37m"`
+    COMMANDSINTAX2=`coloredWords "git commit -m 'MESSAGEHERE'" "31m" 0 "37m"`
+    COMMANDSINTAX3=`coloredWords "git add ." "31m" 0 "37m"`
+
+    textWrite "First, you need use $COMMANDSINTAX1 command to inicialize the git in your directory." true
+
+    #prepare ambient
     rm -rf .git
     git init
-    textWrite "\n *In the first commit, type for message 'first commit' or something like that...*\n" false
+
+    #Explication
+    pressEnter
+    textWrite "This Command $COMMANDSINTAX2 create a nem point in history of your project, that is what we call a commit. \n" true 
+    textWrite "Before then we use the $COMMANDSINTAX3 to send all files for Stage Area. You can send individual files too, but you need replace '.' by name of file \n" true 
+    pressEnter
+    textWrite " *In the first commit, type for message 'first commit' or something like that...*\n" false
+    createNewCommit
+}
+
+function createNewCommit(){
+
+    coloredWords "type a message of commit: " "32m" 0 "37m"
+    read commitMessage
+
+    if [ $commitMessage == ""]
+    then
+    echo "  You need type any phrase or word, please stay calm and not jump steps" 
     pressEnter
     createNewCommit
+    fi
+
+    git add . 
+    git commit -m "$commitMessage"
 }
 
 function renameFile(){
@@ -35,6 +45,17 @@ function renameFile(){
     ls -lhra $oldFileName
     git mv $oldFileName $newFileName #mv renomeia um arquivo ou move (mesma coisa de linux)
     ls -lhra $newFileName
+}
+
+function removeUntrackedFiles(){
+    COMMANDSINTAX1=`coloredWords "'git clean -f'" "31m" 0 "37m"`
+    COMMANDSINTAX2=`coloredWords "'git add FileName'" "31m" 0 "37m"`
+    
+    #explication
+    textWrite "$COMMANDSINTAX1 Permanently remove files that are not being tracked, those where they are not in the repository...  \n" true
+    textWrite "  *Be careful with that command, before use $COMMANDSINTAX2 in the file you want track* "
+
+    git clean -f 
 }
 
 function removeFile() {
@@ -53,10 +74,7 @@ function removeFileStaged() {
     git rm --staged $FILETOREMOVE
 }
 
-function removeUntrackedFiles(){
-    #sintax here
-    git clean -f #remove permanentemente os arquivos que não estão sendo rastreados, ou seja, aqueles em que não estão no repositorio. Cuidado com esse comando, antes de usar, dê um 'git add FileName' nos arquivo que deseja que sejam rastreaveis 
-}
+
 
 COUNT=0
 function commitTrackedFiles() {

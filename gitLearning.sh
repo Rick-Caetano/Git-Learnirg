@@ -12,9 +12,10 @@ function gitBasiComands(){
     renameFile "rename.me" $newname
     textWrite "Now that we've changed name of file, we need a new commit \n" true 
     createNewCommit
-    createContentFile rename.me "Estão me rastreando?! tenho que me esconder... Não posso ficar parado aqui."
-    echo "rename.me say: " && cat rename.me
-    #removeUntrackedFiles
+    createContentFile untrack.me "Are they tracking me?! I have to hide... I can't just stand here."
+    echo "untracked file say: " && cat untrack.me
+    removeUntrackedFiles
+    pressEnter
 }
 
 function gitLogComands(){
